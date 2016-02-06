@@ -7,6 +7,8 @@ require 'sinatra'
 require 'sinatra/json'
 require 'sinatra/reloader' if development?
 
+set :protection, :except => [:json_csrf]
+
 get '/' do
   json({
     operations: [{
