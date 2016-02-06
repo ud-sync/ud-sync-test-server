@@ -9,7 +9,7 @@ require 'sinatra/reloader' if development?
 
 set :protection, :except => [:json_csrf]
 
-get '/' do
+get '/ud_sync/operations' do
   json({
     operations: [{
       id: '1',
