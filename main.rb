@@ -10,8 +10,10 @@ require 'sinatra/reloader' if development?
 set :protection, :except => [:json_csrf]
 
 get '/ud_sync/operations' do
-  json({
-    operations: [{
+  if params[:test] == 'no-operations'
+    operations = []
+  else
+    operations = [{
       id: '1',
       name: 'save',
       record_id: 'record-1',
@@ -30,5 +32,7 @@ get '/ud_sync/operations' do
       entity: 'Post',
       date: Time.now.iso8601
     }]
-  })
+  end
+
+  json operations: operations
 end
